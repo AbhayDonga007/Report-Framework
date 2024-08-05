@@ -21,6 +21,7 @@ const Filter: React.FC<FilterComponentProps> = ({ data, onFilter }) => {
 
   const [ageFilter, setAgeFilter] = useState<number | null>(null);
   const [ageFilterType, setAgeFilterType] = useState<string>("Equals");
+  const [ageRange, setAgeRange] = useState<{ min: number | null, max: number | null }>({ min: null, max: null });
 
 
   const [nameFilter, setNameFilter] = useState<string>("");
@@ -29,9 +30,12 @@ const Filter: React.FC<FilterComponentProps> = ({ data, onFilter }) => {
   
   const [roleFilter, setRoleFilter] = useState<string>("");
   const [roleFilterType, setRoleFilterType] = useState<string>("Contains");
-  
+
   const [salaryFilter, setSalaryFilter] = useState<number | null>(null);
   const [salaryFilterType, setSalaryFilterType] = useState<string>("Equals");
+  const [salaryRange, setSalaryRange] = useState<{ min: number | null, max: number | null }>({ min: null, max: null });
+
+
   const [activeFilter, setActiveFilter] = useState<boolean | null>(null);
 
   const applyFilters = () => {
@@ -109,7 +113,14 @@ const Filter: React.FC<FilterComponentProps> = ({ data, onFilter }) => {
       }
     }
 
-    if (ageFilter !== null) {
+    if (ageFilterType === "Range") {
+        if (ageRange.min !== null) {
+          filteredData = filteredData.filter((item) => item.age >= ageRange.min!);
+        }
+        if (ageRange.max !== null) {
+          filteredData = filteredData.filter((item) => item.age <= ageRange.max!);
+        }
+      } else if (ageFilter !== null) {
       switch (ageFilterType) {
         case "Equals":
           filteredData = filteredData.filter((item) => item.age === ageFilter);
@@ -134,7 +145,14 @@ const Filter: React.FC<FilterComponentProps> = ({ data, onFilter }) => {
       }
     }
 
-    if (salaryFilter !== null) {
+    if (salaryFilterType === "Range") {
+        if (salaryRange.min !== null) {
+          filteredData = filteredData.filter((item) => item.salary >= salaryRange.min!);
+        }
+        if (salaryRange.max !== null) {
+          filteredData = filteredData.filter((item) => item.salary <= salaryRange.max!);
+        }
+      } else if (salaryFilter !== null) {
       switch (salaryFilterType) {
         case "Equals":
           filteredData = filteredData.filter(
@@ -328,8 +346,23 @@ const Filter: React.FC<FilterComponentProps> = ({ data, onFilter }) => {
                   Greater than or equal
                 </DropdownItem>
                 <DropdownItem key="Not equal">Not equal</DropdownItem>
+                <DropdownItem key="Range">Range</DropdownItem>
               </DropdownMenu>
             </Dropdown>
+            {ageFilterType === "Range" && (
+              <div className="flex gap-4">
+                <Input
+                  type="number"
+                  label="Min Age"
+                  onChange={(e) => setAgeRange({ ...ageRange, min: Number(e.target.value) })}
+                />
+                <Input
+                  type="number"
+                  label="Max Age"
+                  onChange={(e) => setAgeRange({ ...ageRange, max: Number(e.target.value) })}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -397,12 +430,29 @@ const Filter: React.FC<FilterComponentProps> = ({ data, onFilter }) => {
                   Greater than or equal
                 </DropdownItem>
                 <DropdownItem key="Not equal">Not equal</DropdownItem>
+                <DropdownItem key="Range">Range</DropdownItem>
               </DropdownMenu>
             </Dropdown>
+            {salaryFilterType === "Range" && (
+              <div className="flex gap-4">
+                <Input
+                  type="number"
+                  label="Min Salary"
+                  onChange={(e) => setSalaryRange({ ...salaryRange, min: Number(e.target.value) })}
+                />
+                <Input
+                  type="number"
+                  label="Max Salary"
+                  onChange={(e) => setSalaryRange({ ...salaryRange, max: Number(e.target.value) })}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
 
+
+        
       </div>
 
       {/* <div>

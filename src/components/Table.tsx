@@ -12,7 +12,7 @@ const TableComponent: React.FC = () => {
 
   const handleFilter = (data: ApiData[]) => {
     setFilteredData(data);
-    setSortedData(data); // Reset sorted data after filtering
+    setSortedData(data); 
   };
 
   const handleSort = (data: ApiData[]) => {

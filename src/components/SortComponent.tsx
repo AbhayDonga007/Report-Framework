@@ -20,32 +20,31 @@ const SortComponent: React.FC<SortComponentProps> = ({ data, onSort }) => {
 
   return (
     <div>
-      <div>
-        {/* <button onClick={() => sortData('id', 'asc')}>ID Asc</button> */}
+      <div className="space-y-2 justify-center items-center text-center gap-3 space-x-2">
         <Button onClick={() => sortData('id', 'asc')}>ID Asc</Button>
         <Button onClick={() => sortData('id', 'desc')}>ID Desc</Button>
       </div>
-      <div>
+      <div className="space-y-2 justify-center items-center text-center gap-3 space-x-2">
         <Button onClick={() => sortData('name', 'asc')}>Name Asc</Button>
         <Button onClick={() => sortData('name', 'desc')}>Name Desc</Button>
       </div>
-      <div>
+      <div className="space-y-2 justify-center items-center text-center gap-3 space-x-2">
         <Button onClick={() => sortData('age', 'asc')}>Age Asc</Button>
         <Button onClick={() => sortData('age', 'desc')}>Age Desc</Button>
       </div>
-      <div>
+      <div className="space-y-2 justify-center items-center text-center gap-3 space-x-2">
         <Button onClick={() => sortData('role', 'asc')}>Role Asc</Button>
         <Button onClick={() => sortData('role', 'desc')}>Role Desc</Button>
       </div>
-      <div>
+      <div className="space-y-2 justify-center items-center text-center gap-3 space-x-2">
         <Button onClick={() => sortData('hireDate', 'asc')}>Date Asc</Button>
         <Button onClick={() => sortData('hireDate', 'desc')}>Date Desc</Button>
       </div>
-      <div>
+      <div className="space-y-2 justify-center items-center text-center gap-3 space-x-2">
         <Button onClick={() => sortData('isActive', 'asc')}>isActive Asc</Button>
         <Button onClick={() => sortData('isActive', 'desc')}>isActive Desc</Button>
       </div>
-      <div>
+      <div className="space-y-2 justify-center items-center text-center gap-3 space-x-2">
         <Button onClick={() => sortData('salary', 'asc')}>Salary Asc</Button>
         <Button onClick={() => sortData('salary', 'desc')}>Salary Desc</Button>
       </div>
